@@ -4,18 +4,21 @@
 ;     ○ For example, the numbers below 10 that are multiples of 3 or 5 are: 3, 5, 6, and 9.
 ;       The sum of these numbers is 23.
 
-(= (divisible $x)
-   (if (> $x 0)
-       (if (== (% $x 3) 0) (
-        + $x (divisible (- $x 1))
-        )
-            (if (== (% $x 5) 0)(
-                + $x (divisible (- $x 1))
+(= (sum-multiples $x) (
+    if (> $x 0) (
+        if (or (== (% $x 3) 0) (== (% $x 5) 0)) (
+            + $x (sum-multiples(- $x 1))
             )
-                (divisible (- $x 1))))
-       0))
+        (sum-multiples(- $x 1))
+        )
+    0
+    )
+)
 
-(= (filter $x)
-    (divisible(- $x 1)))   ; To exclude the number because we have asked to find the sum below that number
+(= (sum-multiples-substract-one $x) (    ; To exclude the given number because we have only asked for the numbers that are less.
+    sum-multiples(- $x 1)                   
+    )
+)                                            
 
-! (filter 10)
+! (sum-multiples-substract-one 13)
+
