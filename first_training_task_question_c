@@ -1,0 +1,28 @@
+; Define a function to compute the length of a list
+(= (length ()) 0)
+
+(= (length (:: $x $xs))
+   (+ 1 (length $xs)))
+
+; Define a function to bubble up the largest element to the right in one pass
+(= (bubble-up (:: $x())) (:: $x()))
+
+(= (bubble-up (:: $x (:: $y $rest))) (
+    if (> $x $y) (:: $y (bubble-up (:: $x $rest))) (:: $x (bubble-up (:: $y $rest)))
+    )
+)
+
+; Perform bubble-up multiple times to fully sort the list
+; This repeats the bubble-up process 'length' times to ensure complete sorting
+(=  (sort-n-times $length $list) 
+    (if (> $length 0) (sort-n-times (- $length 1) (bubble-up $list)) ($list))
+)
+
+; Wrapper function for sorting: hides internal implementation details
+; Calls sort-n-times with the length of the list as the number of passes
+(= (sort $list)
+    (sort-n-times (length $list) $list)
+)
+
+; Test case: Sorting a list using bubble sort
+!(sort (:: 13(:: 3(:: 2(:: 1(:: 0(:: 11()))))))); output: ((:: 0 (:: 1 (:: 2 (:: 3 (:: 11 (:: 13 ())))))))
