@@ -1,3 +1,7 @@
+; Sorting Elements in a List
+; ○ Write a function to sort elements of a list ascending order.
+
+
 ; Define a function to compute the length of a list
 (= (length ()) 0)
 
