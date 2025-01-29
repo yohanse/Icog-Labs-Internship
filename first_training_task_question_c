@@ -1,0 +1,21 @@
+; Binary Map Function on a List
+; ○ Implement a binary map function that takes a binary function f (a function with
+; two arguments), a constant value, and a list, and applies f to each element of the
+; list and the constant.
+; ○ For example, given a list (1, 2, 3), a constant value 10, and a binary function
+; addTwo, the result should be a new list (11, 12, 13) where each element is the
+; result of applying addTwo to the corresponding element and 10.
+
+(= (binary-map $f $cst ()) ())
+
+(= (binary-map $f $cst (:: $x $rest)) (
+    :: ($f $x $cst) (binary-map $f $cst $rest)
+    )
+)
+
+(= (add-two $a $b) (
+    + $a $b
+    )
+)
+
+!(binary-map add-two 10 (binary-map add-two 10 (:: 1(:: 2(:: 3())))))
