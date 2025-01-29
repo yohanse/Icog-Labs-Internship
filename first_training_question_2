@@ -1,0 +1,17 @@
+; fisrtNum - to indicate the seccond previous number
+; secondNum - to indicate the previous number
+; n - to idenitify the limit of the fibonacci
+; I have used O(n) which is much better than two dimesional recursion O(2^n)
+; I have started from the second number because certainly 1 isn't even
+
+(= (fibonacci $firstNum $secondNum $n)(
+    if ( <= $secondNum $n)(
+        if (== (% $secondNum 2) 0) (
+            + $secondNum (fibonacci $secondNum (+ $firstNum $secondNum) $n)
+        )
+        (fibonacci $secondNum (+ $firstNum $secondNum) $n)
+    )
+    0
+    )
+)
+!(fibonacci 1 2 100)
