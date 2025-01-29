@@ -18,4 +18,4 @@
     )
 )
 
-!(binary-map add-two 10 (binary-map add-two 10 (:: 1(:: 2(:: 3())))))
+!(binary-map add-two 10 (binary-map add-two 10 (:: 1(:: 2(:: 3()))))) ;output [(:: 21 (:: 22 (:: 23 ())))]
